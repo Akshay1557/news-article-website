@@ -1,4 +1,14 @@
 {
+  "name": "news-project",
+  "version": "1.0.0",
+  "description": "News project with authentication, comments, and articles",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "author": "akshay kumar",
+  "license": "ISC",
   "dependencies": {
     "connect-flash": "^0.1.1",
     "ejs": "^3.1.10",
@@ -9,14 +19,5 @@
     "passport": "^0.7.0",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^8.0.0"
-  },
-  "name": "news-project",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "akshay kumar",
-  "license": "ISC",
-  "description": ""
+  }
 }
