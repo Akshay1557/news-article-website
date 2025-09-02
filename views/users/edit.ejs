@@ -1,0 +1,12 @@
+<h1>Edit User</h1>
+<form action="/users/edit/<%= user._id %>" method="POST">
+  <input type="text" name="name" value="<%= user.name %>" required><br>
+  <input type="email" name="email" value="<%= user.email %>" required><br>
+  <input type="password" name="password" value="<%= user.password %>" required><br>
+  <select name="role">
+    <option value="reader" <%= user.role === "reader" ? "selected" : "" %>>Reader</option>
+    <option value="author" <%= user.role === "author" ? "selected" : "" %>>Author</option>
+    <option value="admin" <%= user.role === "admin" ? "selected" : "" %>>Admin</option>
+  </select><br>
+  <button type="submit">Update</button>
+</form>

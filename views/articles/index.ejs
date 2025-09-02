@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Articles</title>
+</head>
+<body>
+
+  <%- include("../partials/header") %>
+
+  <h1>All Articles</h1>
+
+  <% if (user) { %>
+    <a href="/articles/new">Create New Article</a>
+  <% } else { %>
+    <p><a href="/users/login">Login</a> to create an article</p>
+  <% } %>
+
+  <ul>
+    <% articles.forEach(article => { %>
+      <li>
+        <a href="/articles/<%= article._id %>"><%= article.title %></a>
+        <small> by <%= article.authorId ? article.authorId.name : "Unknown" %></small>
+
+        <% if (user && article.authorId && article.authorId._id.toString() === user._id.toString()) { %>
+          <!-- Only show Edit/Delete to the article owner -->
+          | <a href="/articles/edit/<%= article._id %>">Edit</a>
+          | <form action="/articles/delete/<%= article._id %>" method="POST" style="display:inline;">
+              <button type="submit">Delete</button>
+            </form>
+        <% } %>
+      </li>
+    <% }) %>
+  </ul>
+</body>
+</html>
