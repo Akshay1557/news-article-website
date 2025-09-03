@@ -5,7 +5,7 @@ const articleSchema = new mongoose.Schema({
   slug: { type: String },
   content: { type: String, required: true },
   summary: String,
-  coverImage: String,
+  image: String,
 
   authorId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   categoryId: { type: mongoose.Schema.Types.ObjectId, ref: "Category" },

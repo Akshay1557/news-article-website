@@ -6,6 +6,12 @@
 </head>
 <body>
   <h1><%= article.title %></h1>
+
+  <!-- ✅ Show cover image if available -->
+  <% if (article.image) { %>
+  <img src="<%= article.image %>" alt="Article image" style="max-width:400px;">
+<% } %>
+
   <p><%= article.content %></p>
   <a href="/articles">Back to all articles</a>
 

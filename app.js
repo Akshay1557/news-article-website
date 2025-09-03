@@ -1,4 +1,4 @@
-
+require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
@@ -6,6 +6,7 @@ const session = require("express-session");
 const passport = require("passport");
 const User = require("./models/User");
 const articleRoutes = require("./routes/articleRoutes");
+
 const userRoutes = require("./routes/userRoutes");
 const commentRoutes = require("./routes/commentRoutes");
 const reactionRoutes = require("./routes/reactionRoutes");
@@ -21,11 +22,12 @@ app.use(express.urlencoded({ extended: true }));
 // Session
 app.use(
   session({
-    secret: "supersecretkey", // change in production
+    secret: process.env.SESSION_SECRET || "fallbacksecret",
     resave: false,
     saveUninitialized: false,
   })
 );
+
 
 app.use(passport.initialize());
 app.use(passport.session());

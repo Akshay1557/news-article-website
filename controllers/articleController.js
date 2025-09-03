@@ -1,4 +1,5 @@
 const Article = require("../models/Article");
+const { upload } = require("../cloudinary"); // ⬅ import  upload
 
 // Show form to create a new article
 exports.showNewForm = (req, res) => {
@@ -12,16 +13,25 @@ exports.showNewForm = (req, res) => {
 // Create Article (C)
 exports.createArticle = async (req, res) => {
   try {
-    const article = new Article({
+    const articleData = {
       ...req.body,
-      authorId: req.user._id   // save logged in user as author
-    });
+      authorId: req.user._id
+    };
+
+    // ✅ If an image was uploaded, Cloudinary gives us `req.file.path`
+    if (req.file) {
+      articleData.image = req.file.path;
+    }
+
+    const article = new Article(articleData);
     await article.save();
+
     res.redirect("/articles");
   } catch (err) {
     res.status(400).send(err.message);
   }
 };
+
 
 
 // Get All Articles (R)
@@ -77,27 +87,32 @@ exports.showEditForm = async (req, res) => {
   }
 };
 
-
 // Update Article (U)
 exports.updateArticle = async (req, res) => {
   try {
     const article = await Article.findById(req.params.id);
     if (!article) return res.status(404).send("Article not found");
 
-    //  ownership check
+    // ✅ ownership check
     if (!article.authorId.equals(req.user._id)) {
       return res.status(403).send("You are not allowed to update this article");
     }
 
-    // update fields
+    // ✅ Update fields
     Object.assign(article, req.body);
-    await article.save();
 
-    res.redirect("/articles");
+    // ✅ If user uploaded a new image, replace
+    if (req.file) {
+      article.image = req.file.path;
+    }
+
+    await article.save();
+    res.redirect("/articles/" + article._id);
   } catch (err) {
     res.status(400).send(err.message);
   }
 };
+
 
 
 // Delete Article (D)

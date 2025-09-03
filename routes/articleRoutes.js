@@ -8,6 +8,7 @@ const {
   showEditForm,
   showNewForm
 } = require("../controllers/articleController");
+const { upload } = require("../cloudinary");
 
 const { isAuthenticated } = require("../middlewares/authMiddleware");
 
@@ -18,6 +19,13 @@ router.get("/", getArticles);
 
 // Show form to create new article (protected)
 router.get("/new", isAuthenticated, showNewForm);
+
+// Create article with image upload
+router.post("/", upload.single("image"), createArticle);
+
+// Update article with image upload
+router.post("/:id", upload.single("image"), updateArticle);
+
 
 // Create new article (protected)
 router.post("/", isAuthenticated, createArticle);
