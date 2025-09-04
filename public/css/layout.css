@@ -1,0 +1,43 @@
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #2E7D32; 
+    padding: 10px 20px;
+    border-radius: 8px; 
+    position: sticky;
+    top: 0;
+    color: white;
+}
+
+
+.brandName a{
+    text-decoration: none;
+    color: white;
+    
+   
+}
+
+.register, .login, .logout{
+    text-decoration: none;
+    background-color: rgba(163, 245, 0, 0.226);
+    font-size: 20px;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 6px;
+
+}
+
+.login:hover{
+    background-color:rgba(0, 8, 0, 0.242);
+}
+
+.register:hover{
+    background-color: rgba(0, 8, 0, 0.242);
+};
+
+.logout{
+    rgba(0, 8, 0, 0.242);
+}
+

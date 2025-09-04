@@ -62,7 +62,7 @@ app.use("/", reactionRoutes);
 
 
 app.get("/", (req, res) => {
-    res.render("home", { title: "News Website" });
+    res.redirect("/articles");
 });
 
 

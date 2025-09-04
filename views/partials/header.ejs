@@ -1,9 +1,31 @@
-<header>
-  <h2>News Website</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/layout.css">
+  <title>Document</title>
+</head>
+<body>
+  
+  <div class="header">
+    <div>
+      <button>☰</button>
+    </div>
 
-  <% if (user) { %>
-    <p>Welcome, <%= user.name || user.email %> | <a href="/users/logout">Logout</a></p>
-  <% } else { %>
-    <a href="/users/login">Login</a> | <a href="/users/register">Register</a>
-  <% } %>
-</header>
+    <div class="brandName">
+      <h2><a href="/articles">NEWS WEBSITE</a></h2>
+    </div>
+
+    <div>
+   <% if (user) { %>
+    <p>Welcome, <%= user.name || user.email %> | <a href="/users/logout" class="logout">Logout</a></p>
+   <% } else { %>
+    <a href="/users/register" class="register">Register</a> 
+     <a href="/users/login" class="login">Login</a>
+   <% } %>
+   </div>
+  </div>
+
+</body>
+</html>
