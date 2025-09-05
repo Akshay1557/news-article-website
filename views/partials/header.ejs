@@ -10,7 +10,7 @@
   
   <div class="header">
     <div>
-      <button>☰</button>
+     <button class="menu-btn" onclick="openSidebar()">☰</button>
     </div>
 
     <div class="brandName">
@@ -26,6 +26,28 @@
    <% } %>
    </div>
   </div>
+
+  <!-- sidebar -->
+   <div class="sidebar" id="sidebar">
+     <button onclick="closeSidebar()" class="closebtn">Close   ✖</button>
+     
+      <nav class="sidebar-nav">
+        <a href="/articles">Articles</a>
+        <a href="/articles">Articles 2</a>
+        <a href="/articles">Articles 3</a>
+       </nav>
+     
+   </div>
+
+   <script>
+        function openSidebar(){
+          document.getElementById("sidebar").style.display = "block";
+        };
+
+        function closeSidebar(){
+          document.getElementById("sidebar").style.display ="none";
+        };
+   </script>
 
 </body>
 </html>
