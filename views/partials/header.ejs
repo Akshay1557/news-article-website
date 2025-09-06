@@ -17,15 +17,19 @@
       <h2><a href="/articles">NEWS WEBSITE</a></h2>
     </div>
 
+
     <div>
+      <button onclick="openAuth()" id="openAuth" class="openAuth">👤</button>
    <% if (user) { %>
-    <p>Welcome, <%= user.name || user.email %> | <a href="/users/logout" class="logout">Logout</a></p>
+   <a href="/users/logout" class="logout">Logout</a></p>
    <% } else { %>
     <a href="/users/register" class="register">Register</a> 
      <a href="/users/login" class="login">Login</a>
    <% } %>
    </div>
   </div>
+
+  
 
   <!-- sidebar -->
    <div class="sidebar" id="sidebar">
@@ -39,6 +43,22 @@
      
    </div>
 
+   <!-- user menu  --> 
+   
+    <div class="userMenu" id="userMenu" class="userMenu">
+      <button onclick="closeAuth()" class="closeAuth" >Close   ✖</button>
+
+      <nav >
+
+        <% if (user) { %>
+           <a href="/users/logout" class="logout">Logout</a>
+        <% } else { %>
+          <a href="/users/register" class="register">Register</a> 
+           <a href="/users/login" class="login">Login</a>
+        <% } %>
+       </nav>
+    </div>
+
    <script>
         function openSidebar(){
           document.getElementById("sidebar").style.display = "block";
@@ -47,6 +67,16 @@
         function closeSidebar(){
           document.getElementById("sidebar").style.display ="none";
         };
+        
+        // <!-- user authentication mobile screen -->
+
+        function openAuth(){
+          document.getElementById("userMenu").style.display = "block";
+        }
+
+        function closeAuth(){
+          document.getElementById("userMenu").style.display = "none";
+        }
    </script>
 
 </body>
