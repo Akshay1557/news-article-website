@@ -10,12 +10,6 @@
 
   <h1>All Articles</h1>
 
-  <% if (user) { %>
-    <a href="/articles/new">Create New Article</a>
-  <% } else { %>
-    <p><a href="/users/login">Login</a> to create an article</p>
-  <% } %>
-
   <ul>
     <% articles.forEach(article => { %>
       <li>

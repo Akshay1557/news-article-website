@@ -52,11 +52,11 @@ exports.getArticleById = async (req, res) => {
       .populate("authorId categoryId")
       .populate({
         path: "comments",
-        populate: { path: "author", select: "username email" }
+        populate: { path: "author", select: "name email" }
       })
       .populate({
         path: "reactions",   //  populate reactions
-        populate: { path: "user", select: "username email" } // so you also know who reacted
+        populate: { path: "user", select: "name email" } // so you also know who reacted
       });
 
     if (!article) return res.status(404).send("Article not found");

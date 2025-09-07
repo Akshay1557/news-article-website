@@ -3,82 +3,102 @@
 <head>
   <meta charset="UTF-8">
   <title><%= article.title %></title>
+   <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/articles/articleShow.css">
+  <link rel="stylesheet" href="/css/reaction.css">
+  <link rel="stylesheet" href="/css/comments.css">
 </head>
 <body>
-  <h1><%= article.title %></h1>
 
-  <!-- ✅ Show cover image if available -->
-  <% if (article.image) { %>
-  <img src="<%= article.image %>" alt="Article image" style="max-width:400px;">
-<% } %>
+  <%- include("../partials/header") %>
+  
+<nav class="show-header">
+  <a href="/articles" class="back-link">← Back </a>
+  
+    
+    <% if (user && article.authorId && article.authorId._id.toString() === user._id.toString()) { %>
+      
+        <a href="/articles/edit/<%= article._id %>" class="author-edit" >✏ Edit</a>
+        <form action="/articles/delete/<%= article._id %>" method="POST" style="display:inline;">
+          <button type="submit" class="author-delete" >🗑 Delete</button>
+        </form>
+    <% } %>
 
-  <p><%= article.content %></p>
-  <a href="/articles">Back to all articles</a>
+    </nav>
+  
 
-  <% if (user && article.authorId && article.authorId._id.toString() === user._id.toString()) { %>
-    <!-- Only author can see these -->
-    <a href="/articles/edit/<%= article._id %>">Edit</a>
-    <form action="/articles/delete/<%= article._id %>" method="POST" style="display:inline;">
-      <button type="submit">Delete</button>
-    </form>
-  <% } %>
+  <div class="article-container">
+    <h1><%= article.title %></h1>
 
-  <h2>Comments</h2>
+    <% if (article.image) { %>
+      <img src="<%= article.image %>" alt="Article image">
+    <% } %>
 
-  <% if (article.comments.length > 0) { %>
-    <ul>
-      <% article.comments.forEach(comment => { %>
-        <li>
-          <strong><%= comment.author ? comment.author.username : "Anonymous" %>:</strong>
-          <%= comment.text %>
+    <!-- ✅ Article content with line breaks -->
+    <div class="article-content">
+      <%- article.content.replace(/\n/g,'') %>
+    </div>
+  
 
-          <% if (user && comment.author && user._id.toString() === comment.author._id.toString()) { %>
-            <!-- Edit -->
-            <a href="/articles/<%= article._id %>/comments/<%= comment._id %>/edit">Edit</a>
+    <!-- Reactions -->
+    <div class="reactions">
+      <h3>Reactions</h3>
+      <% if (user) { %>
+        <form action="/articles/<%= article._id %>/reactions" method="POST">
+          <button type="submit" name="type" value="like" class="like">👍: <%= article.reactions.filter(r => r.type === "like").length %></button>
+          <button type="submit" name="type" value="love" class="love">❤️: <%= article.reactions.filter(r => r.type === "love").length %></button>
+          <button type="submit" name="type" value="dislike" class="dislike">👎:<%= article.reactions.filter(r => r.type === "dislike").length %></button>
+        </form>
+      <% } else { %>
+        <p><a href="/users/login">Login</a> to react.</p>
+        <p >
+        👍: <%= article.reactions.filter(r => r.type === "like").length %>
+        ❤️: <%= article.reactions.filter(r => r.type === "love").length %>
+        👎:<%= article.reactions.filter(r => r.type === "dislike").length %>
+        </p>
+      <% } %>
+      
+    </div>
 
-            <!-- Delete -->
-            <form action="/articles/<%= article._id %>/comments/<%= comment._id %>?_method=DELETE" 
-                  method="POST" style="display:inline;">
-              <button type="submit">Delete</button>
-            </form>
-          <% } %>
-        </li>
-      <% }) %>
-    </ul>
-  <% } else { %>
-    <p>No comments yet.</p>
-  <% } %>
+    
 
-  <% if (user) { %>
-    <!-- Create comment -->
-    <form action="/articles/<%= article._id %>/comments" method="POST">
-      <textarea name="text" required></textarea>
-      <br>
-      <button type="submit">Add Comment</button>
-    </form>
-  <% } else { %>
-    <p><a href="/users/login">Login</a> to add a comment.</p>
-  <% } %>
+    <!-- Comments -->
+    <div class="comments">
+      <h2>Comments</h2>
 
-  <hr>
+     <% if (user) { %>
+        <form action="/articles/<%= article._id %>/comments" method="POST">
+          <textarea name="text" required placeholder="Write your comment..."></textarea>
+          <br>
+          <button type="submit">Add Comment</button>
+        </form>
+      <% } else { %>
+        <p><a href="/users/login">Login</a> to add a comment.</p>
+      <% } %>
 
-  <!-- Reactions Part -->
-  <h3>Reactions</h3>
-  <% if (user) { %>
-    <form action="/articles/<%= article._id %>/reactions" method="POST">
-      <button type="submit" name="type" value="like">👍 Like</button>
-      <button type="submit" name="type" value="love">❤️ Love</button>
-      <button type="submit" name="type" value="dislike">👎 Dislike</button>
-    </form>
-  <% } else { %>
-    <p><a href="/users/login">Login</a> to react.</p>
-  <% } %>
 
-  <p>
-    👍: <%= article.reactions.filter(r => r.type === "like").length %> |
-    ❤️: <%= article.reactions.filter(r => r.type === "love").length %> |
-    👎: <%= article.reactions.filter(r => r.type === "dislike").length %>
-  </p>
+      <% if (article.comments.length > 0) { %>
+        <ul>
+          <% article.comments.forEach(comment => { %>
+            <li>
+              <strong><%= comment.author ? comment.author.username : "Anonymous" %><%=comment.author.name %>:</strong>
+              <%= comment.text %>
+              <% if (user && comment.author && user._id.toString() === comment.author._id.toString()) { %>
+                <a href="/articles/<%= article._id %>/comments/<%= comment._id %>/edit" class="edit-comment">✏ Edit</a>
+                <form action="/articles/<%= article._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST" style="display:inline;">
+                  <button type="submit" class="delete-comment">🗑 Delete</button>
+                </form>
+              <% } %>
+            </li>
+          <% }) %>
+        </ul>
+      <% } else { %>
+        <p>No comments yet.</p>
+      <% } %>
+    </div>
+
+    
+  </div>
 
 </body>
 </html>

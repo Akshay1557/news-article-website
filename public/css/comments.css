@@ -1,0 +1,11 @@
+.edit-comment{
+    text-decoration: none;
+    color: white;
+    background-color: green;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.edit-comment:hover{
+    background-color: rgb(2, 72, 2);
+}

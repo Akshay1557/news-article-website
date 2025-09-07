@@ -1,24 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>New Article</title>
+  <meta charset="UTF-8">
+  <title>Create New Article</title>
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/articles/articleCreate.css">
 </head>
 <body>
 
   <%- include("../partials/header") %>
-    
-  <h1>Create New Article</h1>
-  
-  <form action="/articles" method="POST" enctype="multipart/form-data">
-  <input type="text" name="title" placeholder="Title" required><br>
-  <textarea name="content" placeholder="Write your article..." required></textarea><br>
 
-  <!-- ✅ File input -->
-  <input type="file" name="image" accept="image/*"><br>
+  <div class="article-form">
+    <h1>Create New Article</h1>
 
-  <button type="submit">Publish</button>
-</form>
+    <form action="/articles" method="POST" enctype="multipart/form-data">
+      
+      <!-- Title -->
+      <label for="title">Article Title</label>
+      <input type="text" id="title" name="title" placeholder="Enter your article title..." required>
 
+      <!-- Content -->
+      <label for="content">Content</label>
+      <textarea id="content" name="content" placeholder="Write your article here... Use Enter for new paragraphs." required></textarea>
+
+      <!-- Image -->
+      <label for="image">Upload Cover Image</label>
+      <input type="file" id="image" name="image" accept="image/*">
+
+      <!-- Button -->
+      <button type="submit">📢 Publish Article</button>
+    </form>
+  </div>
 
 </body>
 </html>
