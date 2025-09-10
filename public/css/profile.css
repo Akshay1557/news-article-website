@@ -20,11 +20,11 @@
   margin-bottom: 20px;
 }
 
-h1 {
+.profile-container h1 {
   color: #2E7D32;
 }
 
-button {
+.profile-container button {
   margin-top: 10px;
   background: #2E7D32;
   color: #fff;
@@ -38,7 +38,7 @@ button:hover {
 }
 
 
-.profile-close-btn {
+.profile-container .profile-close-btn {
   display: inline-block;
   margin-top: 15px;
   
@@ -51,6 +51,6 @@ button:hover {
   transition: background 0.3s;
 }
 
-.profile-close-btn:hover {
+.profile-container .profile-close-btn:hover {
   background-color: #020000e6;
 }
