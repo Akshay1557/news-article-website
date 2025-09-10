@@ -33,11 +33,29 @@ exports.createArticle = async (req, res) => {
 };
 
 
+// particular user articles 
+// Show all articles created by the logged-in user
+exports.getMyArticles = async (req, res) => {
+  try {
+    const myArticles = await Article.find({ authorId: req.user._id })
+      .populate("categoryId")
+      .sort({ createdAt: -1 });
+
+    res.render("articles/myArticles", { articles: myArticles, user: req.user });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error fetching your articles");
+  }
+};
+
+
 
 // Get All Articles (R)
 exports.getArticles = async (req, res) => {
   try {
-    const articles = await Article.find().populate("authorId categoryId");
+    const articles = await Article.find()
+    .populate("authorId categoryId")
+    .sort({ createdAt: -1 });             // ✅ newest first;
     res.render("articles/index", { articles, user: req.user }); // ✅ added user
   } catch (err) {
     res.status(500).send(err.message);
@@ -127,7 +145,7 @@ exports.deleteArticle = async (req, res) => {
     }
 
     await article.deleteOne();
-    res.redirect("/articles");
+    res.redirect("/articles/my-articles");
   } catch (err) {
     res.status(500).send(err.message);
   }

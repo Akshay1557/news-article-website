@@ -38,7 +38,7 @@ exports.toggleReaction = async (req, res) => {
       await article.save();
     }
 
-    res.redirect(`/articles/${articleId}`);
+    res.redirect(`/articles/${articleId}#reactions`);
   } catch (err) {
     res.status(400).send("Error with reaction: " + err.message);
   }

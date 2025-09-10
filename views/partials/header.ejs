@@ -11,6 +11,10 @@
   <div class="header">
     <div>
      <button class="menu-btn" onclick="openSidebar()">☰</button>
+      <a href="/articles/new" class="header-create-article">
+        <span class="create-article-text">Create Articles</span>
+         <span class="plus-icon">+</span>
+      </a>
     </div>
 
     <div class="brandName">
@@ -35,10 +39,12 @@
    <div class="sidebar" id="sidebar">
      <button onclick="closeSidebar()" class="closebtn">Close   ✖</button>
      
+    <a href="/users/profile">My Profile</a>
+     
       <nav class="sidebar-nav">
-        <a href="/articles/new">create new Articles</a>
-        <a href="/articles">Articles 2</a>
-        <a href="/articles">Articles 3</a>
+        <a href="/articles/new">create Articles <span class="plus-icon">+</span></a>
+        <a href="/articles/my-articles">My Articles</a>
+        
        </nav>
      
    </div>
@@ -77,6 +83,8 @@
         function closeAuth(){
           document.getElementById("userMenu").style.display = "none";
         }
+       
+
    </script>
 
 </body>

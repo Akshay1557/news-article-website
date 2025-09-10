@@ -41,7 +41,7 @@
   
 
     <!-- Reactions -->
-    <div class="reactions">
+    <div class="reactions" id="reactions">
       <h3>Reactions</h3>
       <% if (user) { %>
         <form action="/articles/<%= article._id %>/reactions" method="POST">
@@ -63,7 +63,7 @@
     
 
     <!-- Comments -->
-    <div class="comments">
+    <div class="comments" id="comments">
       <h2>Comments</h2>
 
      <% if (user) { %>

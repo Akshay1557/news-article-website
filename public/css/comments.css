@@ -1,3 +1,5 @@
+
+/* edit comments anchor link */
 .edit-comment{
     text-decoration: none;
     color: white;
@@ -8,4 +10,77 @@
 
 .edit-comment:hover{
     background-color: rgb(2, 72, 2);
+}
+
+/* edit comments form */
+
+/* Edit Comment Page */
+.edit-comment-container {
+  max-width: 600px;
+  margin: 50px auto;
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  font-family: Arial, sans-serif;
+}
+
+.edit-comment-container h1 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.edit-comment-form textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 12px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  resize: vertical;
+  transition: border-color 0.3s;
+}
+
+.edit-comment-form textarea:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Update button */
+.update-btn {
+  margin-top: 15px;
+  padding: 10px 18px;
+  background: #28a745; /* green */
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+.update-btn:hover {
+  background: #218838;
+}
+
+/* Back link */
+.back-link {
+  margin-top: 20px;
+  text-align: center;
+  
+}
+
+.back-link a {
+    background-color: #28a745;
+  text-decoration: none;
+  color: white;
+  font-size: 14px;
+  padding: 5px;
+  border-radius: 8px;
+}
+
+.back-link a:hover {
+  background-color: rgba(4, 50, 4, 0.967);
 }

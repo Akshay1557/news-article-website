@@ -2,26 +2,26 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Articles</title>
+  <title>My Articles</title>
+
+  <link rel="stylesheet" href="/css/layout.css">
   <link rel="stylesheet" href="/css/articles/articleIndex.css">
 </head>
 <body>
-
   <%- include("../partials/header") %>
 
   <main class="container">
-    <h1 class="page-title">Latest News</h1>
-
+    <h1>📝 My Articles</h1>
+     
     <div class="articles-grid">
       <% articles.forEach(article => { %>
-         
         <div class="article-card">
           <% if (article.image) { %>
             <img src="<%= article.image %>" alt="<%= article.title %>" class="article-image">
           <% } else { %>
             <img src="https://via.placeholder.com/300x180?text=No+Image" class="article-image">
           <% } %>
-          
+
           <div class="article-content">
             <h2 class="article-title">
               <a href="/articles/<%= article._id %>"><%= article.title %></a>
@@ -38,17 +38,17 @@
 
             <% if (user && article.authorId && article.authorId._id.toString() === user._id.toString()) { %>
               <div class="article-actions">
-                <a href="/articles/edit/<%= article._id %>" class="btn edit" style="display: none;">Edit</a>
+                <a href="/articles/edit/<%= article._id %>" class="btn edit">Edit</a>
                 <form action="/articles/delete/<%= article._id %>" method="POST" style="display:inline;">
-                  <button type="submit" class="btn delete"  style="display: none;">Delete</button>
+                  <button type="submit" class="btn delete">Delete</button>
                 </form>
               </div>
             <% } %>
           </div>
         </div>
-    
       <% }) %>
     </div>
   </main>
+   
 </body>
 </html>

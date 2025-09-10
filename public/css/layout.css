@@ -4,19 +4,25 @@
     align-items: center;
     justify-content: space-between;
     background-color: #2E7D32; 
-    padding: 10px 20px;
+    padding: 10px 10px;
     border-radius: 8px; 
     position: sticky;
     top: 0;
+    z-index: 1000;
     color: white;
 }
 
 
 .brandName a{
     text-decoration: none;
-    color: white;
-    
-   
+    color: white; 
+    background-color:rgba(163, 245, 0, 0.226) ;  
+    border-radius: 8px;
+    padding: 6px 7px;
+}
+
+.brandName a:hover{
+   background-color:rgba(0, 8, 0, 0.242);
 }
 
 .register, .login, .logout{
@@ -24,7 +30,7 @@
     background-color: rgba(163, 245, 0, 0.226);
     font-size: 20px;
     color: white;
-    padding: 8px 14px;
+    padding: 8px 8px;
     border-radius: 8px;
 
 }
@@ -45,26 +51,27 @@
 
 .sidebar {
     
-    width: 250px;
+    width: 300px;
+    height: 100%;
     position: fixed;
-    top: 9px;
-    left: 9px;
+    top: 0px;
+    left: 0px;
     background-color: rgb(5, 227, 123);
     padding: 10px 0;              
     display: none;
-    z-index: 1;
+    z-index: 1300;
     border-radius: 8px;
     transition: 0.5s;
 }
 
 .closebtn{
-  display: block;
-  width: 40%;
-  margin-left: 140px;
+   display: inline-block;
+  width: 35%;
+  margin-left: 180px;
   margin-top: 10px;
   margin-bottom: 25px;
   height: 40px;
-  text-align: right;
+  padding-bottom: 5px;
   font-size: 20px;
   color: white;
   background-color: rgba(163, 245, 0, 0.226);
@@ -97,20 +104,60 @@
     color: white;
 }
 
+.sidebar-nav a .plus-icon{
+    position: absolute;
+    right: 10px;
+}
+
+.plus-icon{
+    display: inline;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 2px solid white;
+    border-radius: 8px;
+    font-size: 18px;
+}
+
+.plus-icon:hover{
+     background-color:rgba(0, 8, 0, 0.242) ;
+    
+}
+
+.header-create-article{
+    text-decoration: none;
+    color: white;
+    background-color: rgba(163, 245, 0, 0.226);
+    margin-left: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 18px;
+}
+
+.header-create-article:hover{
+    background-color:rgba(0, 8, 0, 0.242) ;
+    
+}
+
 /* user menu  */
 
 .userMenu{
    
     width: 250px;
     position: fixed;
-    top: 9px;
-    right: 9px;
+    top: 0px;
+    right: 0;
     background-color: rgb(5, 227, 123);
     padding: 10px 0;              
     display: none;
-    z-index: 1;
+    z-index: 1300;
     border-radius: 8px;
     transition: 0.5s;
+}
+
+.openAuth{
+    
+    border-radius: 8px;
+    font-size: 16px;
 }
 
 .closeAuth{
@@ -153,14 +200,28 @@
 }
 
 
-@media only screen and (max-width:500px){
+@media only screen and (max-width:650px){
     .register, .login, .logout{
         display: none;
     }
+
 }
 
-@media only screen and (min-width:500px){
-    .openAuth{
+@media only screen and (max-width:650px){
+    .create-article-text{
         display: none;
     }
+
+    .header-create-article{
+        background-color: transparent;
+        padding: 0;
+    }
+     
+}
+
+@media only screen and (min-width:650px){
+    .openAuth{
+        display: none;
+    };
+
 }

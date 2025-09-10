@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= user.name %> Profile</title>
+   <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/profile.css">
+</head>
+<body>
+
+    <%- include("../partials/header") %>
+   
+  <div class="profile-container">
+    
+    <h1>My Profile</h1>
+
+    <!-- Profile Picture -->
+    <div class="profile-pic">
+      <img src="<%= user.photo || "/uploads/profiles/default-user.png"%>" alt="Profile Picture">
+    </div>
+
+    <!-- Name -->
+    <h2>Name:  <%= user.name %></h2>
+    <p>Email:  <%= user.email %></p>
+
+    <!-- Upload New Photo -->
+    <form action="/users/profile/photo" method="POST" enctype="multipart/form-data">
+      <input type="file" name="photo" accept="image/*" required>
+      <button type="submit">Upload New Photo</button>
+    </form>
+    
+    <a href="/articles" class="profile-close-btn">Close ✖ </a>
+     
+  </div>
+</body>
+</html>

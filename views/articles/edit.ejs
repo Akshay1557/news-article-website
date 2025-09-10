@@ -1,27 +1,52 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>Edit Article</title>
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/articles/articleEdit.css">
 </head>
 <body>
-  <h1>Edit Article</h1>
+  <%- include("../partials/header") %>
 
-  <form action="/articles/edit/<%= article._id %>" method="POST" enctype="multipart/form-data">
-  <input type="text" name="title" value="<%= article.title %>" required><br>
+  <div class="article-form">
+    <h1 class="form-title">✏️ Edit Article</h1>
 
-  <textarea name="content" required><%= article.content %></textarea><br>
+    <form action="/articles/edit/<%= article._id %>" method="POST" enctype="multipart/form-data">
+      
+      <!-- Title -->
+      <label for="title">Article Title</label>
+      <input 
+        type="text" 
+        id="title" 
+        name="title"  
+        value="<%= article.title %>"  
+        required>
 
-  <!-- ✅ Show existing image if present -->
-  <% if (article.image) { %>
-    <p>Current Image:</p>
-    <img src="<%= article.image %>" alt="Article image" style="max-width:200px;">
-  <% } %>
+      <!-- Content -->
+      <label for="content">Content</label>
+      <textarea id="content" name="content" required><%= article.content %></textarea>
 
-  <!-- ✅ Upload new image -->
-  <input type="file" name="image" accept="image/*"><br>
+      <!-- Current Image -->
+      <% if (article.image) { %>
+        <div class="form-group">
+          <label>Current Image</label><br>
+          <img src="<%= article.image %>" alt="Article image" class="preview-image">
+        </div>
+      <% } %>
 
-  <button type="submit">Update</button>
-</form>
+      <!-- Upload new image -->
+      <div class="form-group">
+        <label for="image">Upload New Image</label>
+        <input type="file" id="image" name="image" accept="image/*">
+      </div>
 
+      <!-- Submit -->
+      <div class="form-actions">
+        <button type="submit" class="btn primary">Update Article</button>
+        <a href="/articles/<%= article._id %>" class="btn secondary">Cancel</a>
+      </div>
+    </form>
+  </div>
 </body>
 </html>

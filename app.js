@@ -11,6 +11,7 @@ const userRoutes = require("./routes/userRoutes");
 const commentRoutes = require("./routes/commentRoutes");
 const reactionRoutes = require("./routes/reactionRoutes");
 const methodOverride = require("method-override");
+const flash = require("connect-flash");
 
 const app = express();
 
@@ -28,6 +29,8 @@ app.use(
   })
 );
 
+// flash middleware
+app.use(flash());
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -52,6 +55,14 @@ app.use((req, res, next) => {
 });
 
 app.use(methodOverride("_method"));
+
+// Make user & flash available in all views
+app.use((req, res, next) => {
+  res.locals.user = req.user;
+  res.locals.error = req.flash("error");
+  res.locals.success = req.flash("success");
+  next();
+});
 
 
 // Routes

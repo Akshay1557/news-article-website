@@ -12,6 +12,11 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: true,  
   },
+
+  photo: { 
+    type: String ,
+    default:"/uploads/profiles/default-user.png"   // profile pic
+  } ,
   
   role: {
     type: String,

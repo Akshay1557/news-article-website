@@ -20,7 +20,7 @@ exports.createComment = async (req, res) => {
     article.comments.push(comment._id);
     await article.save();
 
-    res.redirect(`/articles/${article._id}`);
+    res.redirect(`/articles/${article._id}#comments`);
   } catch (err) {
     res.status(400).send("Error adding comment: " + err.message);
   }
@@ -51,7 +51,7 @@ exports.updateComment = async (req, res) => {
     comment.text = req.body.text;
     await comment.save();
 
-    res.redirect(`/articles/${req.params.articleId}`);
+    res.redirect(`/articles/${req.params.articleId}#comments`);
   } catch (err) {
     res.status(400).send("Error updating comment: " + err.message);
   }
@@ -74,7 +74,7 @@ exports.deleteComment = async (req, res) => {
       $pull: { comments: comment._id }
     });
 
-    res.redirect(`/articles/${req.params.articleId}`);
+    res.redirect(`/articles/${req.params.articleId}#comments`);
   } catch (err) {
     res.status(400).send("Error deleting comment: " + err.message);
   }
