@@ -1,7 +1,6 @@
 .profile-container {
-
   max-width: 500px;
-  height: 600px;
+  height: auto; /* ✅ allow auto height since form can expand */
   margin: 40px auto;
   padding: 20px;
   background: #fff;
@@ -24,7 +23,63 @@
   color: #2E7D32;
 }
 
-.profile-container button {
+/* edit profile button */
+.editProfile{
+  font-size: 15px;
+  font-weight: 600;
+  padding: 6px 15px;
+  border-radius: 8px;
+}
+
+.editProfile:hover{
+  background-color: #1b5e20;
+  color: white;
+}
+
+/* ✅ Form styling */
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+  text-align: left;
+}
+
+.profile-edit-form a{
+  text-decoration: none;
+  background-color: #1b5e20;
+  color:white;
+  padding: 10px;
+  font-weight: 500;
+  width: 130px;
+  border-radius: 8px;
+
+}
+
+.profile-edit-form a:hover{
+  background-color: #2fd705;
+}
+
+
+.profile-form label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.profile-form input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.profile-form input[type="file"] {
+  border: none;
+  padding: 4px;
+}
+
+.profile-form button {
   margin-top: 10px;
   background: #2E7D32;
   color: #fff;
@@ -32,16 +87,17 @@
   border: none;
   border-radius: 6px;
   cursor: pointer;
-}
-button:hover {
-  background: #1b5e20;
+  font-size: 16px;
+  transition: background 0.3s;
 }
 
+.profile-form button:hover {
+  background: #1b5e20;
+}
 
 .profile-container .profile-close-btn {
   display: inline-block;
   margin-top: 15px;
-  
   padding: 6px 12px;
   background-color: #2fd705;
   color: white;

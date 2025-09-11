@@ -11,7 +11,7 @@
     <!-- Close button -->
     <a href="/articles" class="close-btn">&times;</a>
 
-    <h1 class="auth-title">🔒 Please Login First  !</h1>
+    <h1 class="auth-title"> Please Login First  !</h1>
 
      <!-- Show error messages if any -->
     <% if (error && error.length > 0) { %>
@@ -25,6 +25,7 @@
       <label for="password">Password</label>
       <input type="password" id="password" name="password" required>
 
+      <p>Forgot password ? <a href="/users/forgot-password">update password</a></p>
       <button type="submit" class="btn primary">🔑 Login</button>
     </form>
 

@@ -22,14 +22,35 @@
     <h2>Name:  <%= user.name %></h2>
     <p>Email:  <%= user.email %></p>
 
-    <!-- Upload New Photo -->
-    <form action="/users/profile/photo" method="POST" enctype="multipart/form-data">
-      <input type="file" name="photo" accept="image/*" required>
-      <button type="submit">Upload New Photo</button>
-    </form>
+      <hr>
+  <div class="profile-edit-form" id="profile-edit-form" style="display: none;">
+   <form action="/users/profile/update" method="POST" enctype="multipart/form-data" class="profile-form">
+     <label for="name">Name</label>
+     <input type="text" name="name" id="name" value="<%= user.name %>" required>
+
+     <label for="email">Email</label>
+     <input type="email" name="email" id="email" value="<%= user.email %>" required>
+
+     <label for="photo">Profile Photo</label>
+     <input type="file" name="photo" id="photo" accept="image/*">
+
+     <a href="/users/forgot-password">update password</a>
+
+     <button type="submit">Update Profile</button>
+   </form>
+  </div>
     
     <a href="/articles" class="profile-close-btn">Close ✖ </a>
+    <button onclick="openEditProfile()" class="editProfile">Edit</button>
      
   </div>
+
+ <script>
+   function openEditProfile(){
+          document.getElementById("profile-edit-form").style.display = "block";
+        };
+
+ </script>
+
 </body>
 </html>

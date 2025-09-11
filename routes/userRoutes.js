@@ -6,8 +6,12 @@ const {
   loginUser,
   logoutUser,
   showProfile,
-  uploadProfilePhoto,
-  upload
+  updateProfile,
+  upload,
+  showForgotPasswordForm,
+  handleForgotPassword,
+  showResetPasswordForm,
+  handleResetPassword
 } = require("../controllers/userController");
 
 const router = express.Router();
@@ -22,6 +26,12 @@ router.get("/logout", logoutUser);
 
 // Profile routes
 router.get("/profile", showProfile);
-router.post("/profile/photo", upload.single("photo"), uploadProfilePhoto);
+router.post("/profile/update", upload.single("photo"), updateProfile);
+
+// ✅ Forgot password + reset routes
+router.get("/forgot-password", showForgotPasswordForm);
+router.post("/forgot-password", handleForgotPassword);
+router.get("/reset-password/:userId", showResetPasswordForm);
+router.post("/reset-password/:userId", handleResetPassword);
 
 module.exports = router;

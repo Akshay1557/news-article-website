@@ -87,6 +87,20 @@ body {
   outline: none;
 }
 
+.auth-form a{
+  text-decoration: none;
+  color: #2E7D32;
+  font-weight: 500;
+
+}
+
+.auth-form a:hover{
+  background-color: #2E7D32;
+  color: white;
+  padding: 0 4px;
+  border-radius: 8px;
+}
+
 .btn.primary {
   width: 100%;
   background-color: #2E7D32;
